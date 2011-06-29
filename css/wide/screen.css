@@ -134,20 +134,20 @@ div.wrapper {
 }
 
 div.header {
-    background: url(../media/headerBck.gif) no-repeat left bottom;
+    background: url(../../media/headerBck-wide.gif) no-repeat left bottom;
     padding: 15px 0 34px 22px;
     margin-bottom: 10px;
 }
 
 div.main {
-    background: url(../media/contentBck.gif) no-repeat left top;
+    background: url(../../media/contentBck-wide.gif) no-repeat left top;
     padding: 12px 14px 0px 14px;
     margin-bottom: 20px;
     position: relative; /*height: 472px;*/
 }
 
 div.bottom {
-    background: url(../media/contentBtm.gif) no-repeat left bottom;
+    background: url(../../media/contentBtm-wide.gif) no-repeat left bottom;
     width: 941px;
     padding: 8px 14px 10px 14px;
     position: relative;
@@ -172,7 +172,7 @@ ul.nav li {
     float: left;
     list-style: none;
     font-weight: bold;
-    background: url(../media/divider.gif) no-repeat left 3px;
+    background: url(../../media/divider.gif) no-repeat left 3px;
     margin-left: 5px;
     padding-left: 6px;
 }
@@ -184,7 +184,7 @@ ul.nav li a {
 
 ul.nav li.active a {
     color: #1166a4;
-    background: url(../media/menu_active.gif) no-repeat center bottom;
+    background: url(../../media/menu_active.gif) no-repeat center bottom;
 }
 
 ul.nav li.first {
@@ -211,7 +211,7 @@ span.logo {
 }
 
 div.content-top {
-    background: url(../media/bck2-top.gif) no-repeat left top;
+    background: url(../../media/bck2-top.gif) no-repeat left top;
     height: 6px;
     width: 451px;
     display: block;
@@ -220,7 +220,7 @@ div.content-top {
 }
 
 div.content {
-    background: url(../media/bck2-main.gif) left top;
+    background: url(../../media/bck2-main.gif) left top;
     width: 451px;
     display: block;
     margin-bottom: 0;
@@ -230,7 +230,7 @@ div.content {
 }
 
 div.content-bottom {
-    background: url(../media/bck2-bottom.gif) no-repeat left top;
+    background: url(../../media/bck2-bottom.gif) no-repeat left top;
     height: 9px;
     width: 451px;
     display: block;
