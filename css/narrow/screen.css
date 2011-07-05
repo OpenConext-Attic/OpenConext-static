@@ -26,7 +26,7 @@ body {
 	background: #e7e7e7;
 }
 h1 {
-	font-size: 15px;
+	font-size: 14px;
 	margin:0 0 15px 0;
 	padding:0;
 	color:#fff;
@@ -125,6 +125,9 @@ ul.nav li a {
 ul.nav li.active a {
 	color: #1166a4;
 	background: url(../../media/menu_active.gif) no-repeat center bottom;
+}
+ul.nav li:first-child {
+    background: none;
 }
 ul.nav li.first {
 	background: none;
@@ -248,7 +251,7 @@ div.suggestion img.logo {
 }
 div#main div.bottom {
 	background: url(../../media/contentBtm.gif) no-repeat left bottom;
-	width:478px;
+	width:450px;
 	padding: 8px 14px 10px 14px;
 	position: relative;
 	bottom: 0;

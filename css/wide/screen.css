@@ -177,6 +177,10 @@ ul.nav li {
     padding-left: 6px;
 }
 
+ul.nav li:first-child {
+    background: none;
+}
+
 ul.nav li a {
     color: #fff;
     padding-bottom: 6px;
@@ -238,6 +242,14 @@ div.content-bottom {
     position: relative;
 }
 
+div.trace-wrapper {
+    border: 1px solid #999999;
+    max-height: 1000px;
+    overflow-y: auto;
+    margin: 5px 0 0 0;
+    padding: 5px;
+    font-size: 10px;
+}
 p.back {
     border-bottom: 1px solid #d7d7d7;
     padding-bottom: 10px;

@@ -22,24 +22,31 @@
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  */
 
-.error-icon {
-    background: url(../media/error.png) no-repeat;
-    height: 32px;
-    width: 32px;
-    float: left;
-}
+$(document).ready(function() {
+    var screen = new Screen();
+    screen.init();
+})
 
-.stop-icon {
-    background: url(../media/dead_end.png) no-repeat;
-    height: 48px;
-    width: 48px;
-    float: left;
-}
+var Screen = function() {
 
-.error-text {
-    padding-left: 42px;
-}
+    var module = {
+        init : function() {
+            $('table').each(function() {
+               library.fixTableLayout($(this));
+            });
+        }
+    };
 
-.stop-text {
-    padding-left: 58px;
+    var library = {
+        fixTableLayout : function(table) {
+
+          if (table instanceof jQuery) {
+            // Add odd and even classes to odd and even rows
+            table.find('tbody tr:nth-child(even)').addClass('even');
+            table.find('tbody tr:nth-child(odd)').addClass('odd');
+          }
+        }
+    };
+
+    return module;
 }

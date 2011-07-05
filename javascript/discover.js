@@ -142,7 +142,6 @@ var Discover = function() {
                 });
                 le.removeClass('active');
                 ln.removeClass('active');
-                $("#help_nav").addClass('active');
             });
 
             $("#back_link").live("click", function(e) {
