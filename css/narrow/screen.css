@@ -570,6 +570,10 @@ a.cancel {
 /*	height:239px;*/
 	height:235px;	
 }
+
+#scrollViewportHelp {
+	height: 235px;
+}
 .jspVerticalBar {
 
 	background-color:transparent;

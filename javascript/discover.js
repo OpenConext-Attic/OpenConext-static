@@ -124,13 +124,6 @@ var Discover = function() {
         },
 
         initLinks : function() {
-            var le = $("#lang_en");
-            var ln = $("#lang_nl");
-            le.toggleClass('active', this.lang == 'en');
-            ln.toggleClass('active', this.lang != 'en');
-            var regexp = new RegExp("(&|\\?)lang=[^\&]*");
-            le.find('a:first').attr('href', this.uri.replace(regexp, '') + '&lang=en');
-            ln.find('a:first').attr('href', this.uri.replace(regexp, '') + '&lang=nl');
             $("#help_nav a").live("click", function(e) {
                 e.preventDefault();
                 $("#content").toggle(false);
@@ -140,15 +133,10 @@ var Discover = function() {
                     help.toggle(true);
                     library.prepareFaq();
                 });
-                le.removeClass('active');
-                ln.removeClass('active');
             });
 
             $("#back_link").live("click", function(e) {
                 e.preventDefault();
-                le.toggleClass('active', this.lang == 'en');
-                ln.toggleClass('active', this.lang != 'en');
-                $("#help_nav").removeClass('active');
                 $("#content").toggle(true);
                 $("#help").toggle(false);
             });
