@@ -406,3 +406,7 @@ table.formtable td {
     border: 0 none;
     vertical-align: baseline;
 }
+
+table.formtable li {
+    margin-left: -26px;
+}
