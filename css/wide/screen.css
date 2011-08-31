@@ -309,6 +309,11 @@ img.app-icon {
     max-height: 32px;
 }
 
+span.revoke-gp-access {
+    float: right;
+    margin:  -12px -10px 0 0;
+}
+
 /* LIST */
 
 dl, dd, dt {
