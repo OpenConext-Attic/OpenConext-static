@@ -28,6 +28,10 @@ var Profile = function() {
 
         init : function() {
             $('#GroupProviders').accordion();
+
+			$('.delete').click(function(){
+			  return confirm('Are you sure you want to delete your profile');
+			});
         }
     };
 

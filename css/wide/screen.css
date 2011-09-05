@@ -314,6 +314,14 @@ span.revoke-gp-access {
     margin:  -12px -10px 0 0;
 }
 
+div.exit-disclaimer {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	margin-top: 15px;
+	margin-bottom: 18px;
+}
+
 /* LIST */
 
 dl, dd, dt {
