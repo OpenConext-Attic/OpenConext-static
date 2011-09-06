@@ -27,16 +27,17 @@ var Profile = function() {
     var module = {
 
         init : function() {
-            $('#GroupProviders').accordion();
+            $('#GroupProviders').accordion({
+                autoHeight: false
+            });
 
-			$('.delete').click(function(){
-			  return confirm('Are you sure you want to delete your profile');
-			});
+            $('.delete').click(function() {
+                return confirm('Are you sure you want to delete your profile');
+            });
         }
     };
 
     var library = {
-
     };
 
     return module;
