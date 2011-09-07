@@ -241,11 +241,17 @@ var Discover = function() {
          *
          * @param filter    string used to filter idps
          */
-        loadIdps : function(filter) {
+        loadIdps : function(filter, isSearch) {
             if (filter == this.searchText) {
                 filter = '';
             }
             library.displayIdps(library.filterIdps(filter));
+
+            // Return focus on searchbox if it is a search
+            if (filter !== '') {
+                $('#searchBox').focus();
+                $('#searchBox').putCursorAtEnd();
+            }
         },
 
         filterIdps : function(filter) {
