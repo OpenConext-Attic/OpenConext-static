@@ -377,7 +377,7 @@ dl, dd, dt {
 
 tr.odd {
     background-color: #dadada;
-    border: 1px solid #dadada;
+    border-right: 1px solid #dadada;
 }
 
 /*         CONTENT        */
@@ -429,7 +429,7 @@ table.formtable li {
 /* My Apps table */
 
 tr.detail-row {
-    border-right: 1px solid #DADADA;
+    border: 1px solid #DADADA;
 }
 
 div.attribute-table-wrapper {
