@@ -32,18 +32,18 @@ var Screen = function() {
     var module = {
         init : function() {
             $('table').each(function() {
-               library.fixTableLayout($(this));
+               library.fixTableLayout($(this), 'no-layout-fix');
             });
         }
     };
 
     var library = {
-        fixTableLayout : function(table) {
+        fixTableLayout : function(table, exception) {
 
-          if (table instanceof jQuery) {
+          if (table instanceof jQuery && !table.hasClass(exception)) {
             // Add odd and even classes to odd and even rows
-            table.find('tbody tr:nth-child(even)').addClass('even');
-            table.find('tbody tr:nth-child(odd)').addClass('odd');
+            table.find('tbody>tr:nth-child(even)').addClass('even');
+            table.find('tbody>tr:nth-child(odd)').addClass('odd');
           }
         }
     };

@@ -377,6 +377,7 @@ dl, dd, dt {
 
 tr.odd {
     background-color: #dadada;
+    border: 1px solid #dadada;
 }
 
 /*         CONTENT        */
@@ -410,7 +411,7 @@ table.datatable td {
     border: 1px solid #C1C1BD;
 }
 div.datatable_footer {
-    font-size: 10   px;
+    font-size: 10px;
     font-style: italic;
 }
 
@@ -423,4 +424,30 @@ table.formtable td {
 
 table.formtable li {
     margin-left: -26px;
+}
+
+/* My Apps table */
+
+tr.detail-row {
+    border: 1px solid #DADADA;
+}
+
+div.attribute-table-wrapper {
+    max-height: 400px;
+    overflow: auto;
+}
+
+table.attribute-table {
+    margin: 10px;
+}
+
+/* General styling */
+
+.hide {
+    visibility: hidden;
+    display: none;
+}
+
+.left {
+    float: left;
 }
