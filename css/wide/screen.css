@@ -429,7 +429,7 @@ table.formtable li {
 /* My Apps table */
 
 tr.detail-row {
-    border: 1px solid #DADADA;
+    border-right: 1px solid #DADADA;
 }
 
 div.attribute-table-wrapper {
