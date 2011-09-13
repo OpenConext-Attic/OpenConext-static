@@ -444,7 +444,6 @@ table.attribute-table {
 /* General styling */
 
 .hide {
-    visibility: hidden;
     display: none;
 }
 

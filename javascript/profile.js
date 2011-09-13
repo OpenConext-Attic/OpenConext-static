@@ -62,8 +62,8 @@ var Profile = function() {
 
                 if (isOpen) {
                     nextRow.find('div.attribute-table-wrapper').slideUp(500, function() {
+                        nextRow.addClass('hide');
                     });
-                    nextRow.addClass('hide');
                     $(this).prev().removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
                 } else {
                     nextRow.removeClass('hide');
