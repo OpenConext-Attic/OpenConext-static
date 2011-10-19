@@ -34,22 +34,11 @@ body {
     background: #e7e7e7;
 }
 
-@media screen and (min-width: 1000px) {
-    h1 {
-        font-size: 15px;
-        margin: 0 0 15px 0;
-        padding: 8px 0 0 0;
-        color: #fff;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    h1 {
-        font-size: 13px;
-        margin: 0 0 15px 0;
-        padding: 8px 0 0 0;
-        color: #fff;
-    }
+h1 {
+    font-size: 15px;
+    margin: 0 0 15px 0;
+    padding: 8px 0 0 0;
+    color: #fff;
 }
 
 h2, h3 {
@@ -139,64 +128,32 @@ td:first-child {
 /*++++++++++++++++++++++++*/
 /*      MAIN ELEMENTS     */
 
-@media screen and (min-width: 1000px) {
-    div.wrapper {
-        margin: 0 auto;
-        width: 968px;
-    }
-
-    div.header {
-        background: url(../../media/headerBck-wide.gif) no-repeat left bottom;
-        padding: 15px 0 34px 22px;
-        margin-bottom: 10px;
-    }
-
-    div.main {
-        background: url(../../media/contentBck-wide.gif) no-repeat left top;
-        padding: 4px 14px 0px 14px;
-        margin-bottom: 20px;
-        position: relative; /*height: 472px;*/
-    }
-
-    div.bottom {
-        background: url(../../media/contentBtm-wide.gif) no-repeat left bottom;
-        width: 941px;
-        padding: 8px 14px 10px 14px;
-        position: relative;
-        bottom: 0;
-        left: 0;
-        margin-left: -14px;
-    }
+div.wrapper {
+    margin: 0 auto;
+    width: 968px;
 }
 
-@media screen and (max-width: 1000px) {
-    div.wrapper {
-        margin: 0 auto;
-        width: 478px;
-    }
+div.header {
+    background: url(../../media/headerBck-wide.gif) no-repeat left bottom;
+    padding: 15px 0 34px 22px;
+    margin-bottom: 10px;
+}
 
-    div.header {
-        background: url(../../media/headerBck.gif) no-repeat left bottom;
-        padding: 15px 0 34px 22px;
-        margin-bottom: 10px;
-    }
+div.main {
+    background: url(../../media/contentBck-wide.gif) no-repeat left top;
+    padding: 4px 14px 0px 14px;
+    margin-bottom: 20px;
+    position: relative; /*height: 472px;*/
+}
 
-    div.main {
-        background: url(../../media/contentBck.gif) no-repeat left top;
-        padding: 4px 14px 0px 14px;
-        margin-bottom: 20px;
-        position: relative; /*height: 472px;*/
-    }
-
-    div.bottom {
-        background: url(../../media/contentBtm.gif) no-repeat left bottom;
-        width: 451px;
-        padding: 8px 14px 10px 14px;
-        position: relative;
-        bottom: 0;
-        left: 0;
-        margin-left: -14px;
-    }
+div.bottom {
+    background: url(../../media/contentBtm-wide.gif) no-repeat left bottom;
+    width: 941px;
+    padding: 8px 14px 10px 14px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin-left: -14px;
 }
 
 /*      MAIN ELEMENTS     */
