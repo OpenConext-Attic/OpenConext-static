@@ -62,19 +62,26 @@ var Discover = function() {
             library.sortIdps();
             library.loadIdps($('#searchBox').val());
 
-            //Hook up search box event
-            $('#searchBox').typeWatch({
-                callback: library.loadIdps,
-                wait: 300,
-                captureLength: -1 //Capture empty value as well
+            //Hook up searchbox event
+            $('#searchBox').keyup(function (e) {
+                switch (e.which) {
+                   case 40: // ignore the arrow keys
+                   case 38:
+                   case 37:
+                   case 39:
+                      break;
+                   default:
+                      library.loadIdps($('#searchBox').val());  
+                }
             });
 
             //Disable or enable keyboardNavigator if search field gets or looses focus
             $('#searchBox').focus(function() {
-                // clear searchbox text on focus
-                if ($('#searchBox').val() == library.searchText) {
-                    $('#searchBox').val('');
-                }
+               keyboardNavigator.enabled = false;
+               // clear searchbox text on focus
+               if ($('#searchBox').val() == library.searchText) {
+                  $('#searchBox').val('');
+               }
             });
 
             $('#searchBox').blur(function() {
@@ -246,12 +253,6 @@ var Discover = function() {
                 filter = '';
             }
             library.displayIdps(library.filterIdps(filter));
-
-            // Return focus on searchbox if it is a search
-            if (filter !== '') {
-                $('#searchBox').focus();
-                $('#searchBox').putCursorAtEnd();
-            }
         },
 
         filterIdps : function(filter) {
@@ -345,11 +346,11 @@ var Discover = function() {
                 // Check whether there is a search and a selection has to be made
                 if (($('#searchBox').val() == "") || ($('#searchBox').val() == this.searchText)) {
                     // no search no selection
-                    keyboardNavigator.setSelectedIndex(-1);
+                    // keyboardNavigator.setSelectedIndex(-1);
                     $('#organisationsContainer li').removeClass('selected');
                 } else {
                     // search, select first in list
-                    keyboardNavigator.setSelectedIndex(0);
+                    // keyboardNavigator.setSelectedIndex(0);
                     $('#organisationsContainer li:first').addClass('selected', '');
                 }
 
