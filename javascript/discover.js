@@ -47,6 +47,16 @@ var Discover = function() {
         },
 
         show : function() {
+            // Restrict the form from submitting unless a valid idp has been chosen
+            $('#IdpListForm').submit(function() {
+                var selectedIdp = $('#Idp').attr('value');
+                for (var idp in library.idpList) {
+                    if (library.idpList[idp].EntityId === selectedIdp) {
+                        return true;
+                    }
+                }
+                return false;
+            });
 
             //Initialize keyboard navigator
             keyboardNavigator.init();
@@ -421,4 +431,4 @@ var Discover = function() {
     };
 
     return module;
-}
+};
