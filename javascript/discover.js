@@ -55,7 +55,7 @@ var Discover = function() {
                 }
                 for (var idp in library.idpList) {
                     if (encodeURIComponent(library.idpList[idp].EntityId) === selectedIdp) {
-                        return false;
+                        return true;
                     }
                 }
                 return false;
@@ -323,7 +323,7 @@ var Discover = function() {
                 $('#organisationsContainer').html('');
 
                 //Loop through every idp, create a html snippet for it, and append it to the container
-                for (i = 0; i < results.length; i++) {
+                for (var i = 0; i < results.length; i++) {
                     var result = results[i];
 
                     // create a new object for the idp
@@ -372,9 +372,8 @@ var Discover = function() {
 
                     //check if there is a selected item
                     var org = $('ul#organisationsContainer li.selected a').attr('alt');
-                    //if no select suggestion
-                    if (org == undefined) {
-                        library.selectSuggestion();
+                    if (!org) {
+                        return false;
                     }
 
                     //action no access or access
