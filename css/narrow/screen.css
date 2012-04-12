@@ -277,6 +277,8 @@ div.suggestion p {
 div.suggestion a img {
     float: left;
     border: 0;
+    max-height: 60px;
+    max-width: 122px;
 }
 
 div.suggestion a span {
