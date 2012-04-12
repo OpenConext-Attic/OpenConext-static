@@ -271,6 +271,12 @@ var Discover = function() {
                 filter = '';
             }
             library.displayIdps(library.filterIdps(filter));
+
+            // Return focus on searchbox if it is a search
+            if (filter !== '') {
+                $('#searchBox').focus();
+                $('#searchBox').putCursorAtEnd();
+            }
         },
 
         filterIdps : function(filter) {
