@@ -383,8 +383,9 @@ var Discover = function() {
 
                     //check if there is a selected item
                     var org = $('ul#organisationsContainer li.selected a').attr('alt');
-                    if (!org) {
-                        return false;
+                    //if no select suggestion
+                    if (org == undefined) {
+                        library.selectSuggestion();
                     }
 
                     //action no access or access
