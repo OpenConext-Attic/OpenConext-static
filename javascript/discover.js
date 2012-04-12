@@ -122,7 +122,10 @@ var Discover = function() {
             if (library.selectedId != '') {
                 library.selectSuggestion();
             }
+        },
 
+        linkHelp: function() {
+            library.initLinks();
         }
     };
 
@@ -146,22 +149,19 @@ var Discover = function() {
         initLinks : function() {
             $("#help_nav a").live("click", function(e) {
                 e.preventDefault();
-                $("#content").toggle(false);
+                if ($('#help:visible').length > 0 && $('#help:visible').html().trim() !== "") {
+                    return;
+                }
                 $.get('/authentication/idp/help?lang='+library.lang, function(data) {
+                    $("#content").hide('slow');
+
                     var help = $("#help");
                     help.html(data);
-                    help.toggle(true);
+                    help.show('slow');
+
                     library.prepareFaq();
                 });
             });
-
-            $("#back_link").live("click", function(e) {
-                e.preventDefault();
-                $("#content").toggle(true);
-                $("#help").toggle(false);
-            });
-
-
         },
 
         prepareFaq : function() {
@@ -180,6 +180,11 @@ var Discover = function() {
                 $('#scrollViewportHelp').data('jsp').reinitialise();
             });
 
+            $("#back_link").live("click", function(e) {
+                e.preventDefault();
+                $("#content").show('slow');
+                $("#help").hide('slow');
+            });
         },
 
         fillSuggestion : function() {
