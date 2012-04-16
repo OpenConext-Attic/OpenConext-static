@@ -270,21 +270,27 @@ tr.odd {
   border-right: 1px solid #dadada; }
 
 div.results {
-  background: url(../../media/bck2.gif) no-repeat left top;
+  background: url(../../media/bck2-small.png) no-repeat left top;
   width: 451px;
-  height: 239px;
+  height: 95px;
   display: block;
   margin-bottom: 0;
   position: relative;
   overflow: visible;
   padding: 3px 0px 3px 0px; }
 
-input.bigbutton {
-    padding: 0 .25em;
-    width: 0;  /* IE table-cell margin fix */
-    overflow: visible;
-}
+#scrollViewport {
+  overflow: hidden;
+  height: 91px; }
 
-input.bigbutton[class] {  /* IE ignores [class] */
-    width: auto;  /* cancel margin fix for other browsers */
-}
+/* IE7 hacks */
+input.bigbutton {
+  padding: 0 .25em;
+  width: 0;
+  /* IE table-cell margin fix */
+  overflow: visible; }
+
+input.bigbutton[class] {
+  /* IE ignores [class] */
+  width: auto;
+  /* cancel margin fix for other browsers */ }
