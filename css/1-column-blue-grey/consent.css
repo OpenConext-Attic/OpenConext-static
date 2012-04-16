@@ -278,3 +278,13 @@ div.results {
   position: relative;
   overflow: visible;
   padding: 3px 0px 3px 0px; }
+
+input.bigbutton {
+    padding: 0 .25em;
+    width: 0;  /* IE table-cell margin fix */
+    overflow: visible;
+}
+
+input.bigbutton[class] {  /* IE ignores [class] */
+    width: auto;  /* cancel margin fix for other browsers */
+}
