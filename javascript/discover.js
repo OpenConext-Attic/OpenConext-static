@@ -65,11 +65,16 @@ var Discover = function() {
             keyboardNavigator.init();
 
             //Create scrollbar
-            $('#scrollViewport').jScrollPane({
-                maintainPosition: false,
-                enableKeyboardNavigation: true,
-                showArrows: true
-            });
+
+            if(window.innerWidth>=768)
+            {
+                $('#scrollViewport').jScrollPane({
+
+                    maintainPosition: true,
+                    enableKeyboardNavigation: true,
+                    showArrows: true
+                });
+            }
 
             //Get start organisations
             library.sortIdps();
@@ -78,23 +83,23 @@ var Discover = function() {
             //Hook up searchbox event
             $('#searchBox').keyup(function (e) {
                 switch (e.which) {
-                   case 40: // ignore the arrow keys
-                   case 38:
-                   case 37:
-                   case 39:
-                      break;
-                   default:
-                      library.loadIdps($('#searchBox').val());  
+                    case 40: // ignore the arrow keys
+                    case 38:
+                    case 37:
+                    case 39:
+                        break;
+                    default:
+                        library.loadIdps($('#searchBox').val());
                 }
             });
 
             //Disable or enable keyboardNavigator if search field gets or looses focus
             $('#searchBox').focus(function() {
-               keyboardNavigator.enabled = false;
-               // clear searchbox text on focus
-               if ($('#searchBox').val() == library.searchText) {
-                  $('#searchBox').val('');
-               }
+                keyboardNavigator.enabled = false;
+                // clear searchbox text on focus
+                if ($('#searchBox').val() == library.searchText) {
+                    $('#searchBox').val('');
+                }
             });
 
             $('#searchBox').blur(function() {
@@ -177,7 +182,10 @@ var Discover = function() {
                 $('#faq li').not(this).removeClass('open');
 
                 //Reinitialise scrollbar
-                $('#scrollViewportHelp').data('jsp').reinitialise();
+                $('#scrollViewportHelp') || $('#scrollViewportHelp').data('jsp') || $('#scrollViewportHelp').data('jsp').reinitialise();
+            });
+            $(window).resize(function() {
+                $('#scrollViewportHelp') || $('#scrollViewportHelp').data('jsp') || $('#scrollViewportHelp').data('jsp').reinitialise();
             });
 
             $("#back_link").live("click", function(e) {
@@ -254,11 +262,11 @@ var Discover = function() {
 
         sortIdps : function() {
             this.idpList.sort(function(o1, o2){
-                 var prop = 'Name_'+library.lang;
-                 var v1 = o1.hasOwnProperty(prop) ? o1[prop] : o1['Name_nl'];
-                 var v2 = o2.hasOwnProperty(prop) ? o2[prop] : o2['Name_nl'];
-                 return v1.localeCompare(v2);
-             });
+                var prop = 'Name_'+library.lang;
+                var v1 = o1.hasOwnProperty(prop) ? o1[prop] : o1['Name_nl'];
+                var v2 = o2.hasOwnProperty(prop) ? o2[prop] : o2['Name_nl'];
+                return v1.localeCompare(v2);
+            });
         },
 
         /**
@@ -326,9 +334,12 @@ var Discover = function() {
                 $('#scrollViewport').hide();
                 $('#resultTabs').hide();
             } else {
-                $('#noResultsMessage').hide();
-                $('#scrollViewport').show();
-                $('#resultTabs').show();
+                if(window.innerWidth>=768)
+                {
+                    $('#noResultsMessage').hide();
+                    $('#scrollViewport').show();
+                    $('#resultTabs').show();
+                }
 
                 //Clear results box
                 $('#organisationsContainer').html('');
@@ -400,7 +411,10 @@ var Discover = function() {
                 });
 
                 //Reinitialise scrollbar
-                $('#scrollViewport').data('jsp').reinitialise();
+                $('#scrollViewport') || $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
+                $(window).resize(function(){
+                    $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
+                });
             }
         },
 
@@ -423,7 +437,7 @@ var Discover = function() {
             $('#organisationsContainer').removeClass('list');
 
             //Reinitialise scrollbar and keynavigator
-            $('#scrollViewport').data('jsp').reinitialise();
+            $('#scrollViewport') || $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
             keyboardNavigator.setMode(keyboardNavigator.MODE_3COLUMN_GRID);
         },
 
@@ -439,10 +453,52 @@ var Discover = function() {
             $('#organisationsContainer').addClass('list');
 
             //Reinitialise scrollbar and keynavigator
-            $('#scrollViewport').data('jsp').reinitialise();
+            $('#scrollViewport') || $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
             keyboardNavigator.setMode(keyboardNavigator.MODE_LIST);
         }
     };
 
     return module;
 };
+
+$(function() {
+
+    $('#scrollViewport').each(
+
+        function()
+
+        {
+            $(this).jScrollPane(
+                {
+                    showArrows: $(this).is('.arrow')
+                }
+            );
+            var api = $(this).data('jsp');
+            var throttleTimeout;
+            $(window).bind(
+                'resize',
+                function()
+                {
+                    if ($.browser.msie) {
+                        // IE fires multiple resize events while you are dragging the browser window which
+                        // causes it to crash if you try to update the scrollpane on every one. So we need
+                        // to throttle it to fire a maximum of once every 50 milliseconds...
+                        if (!throttleTimeout) {
+                            throttleTimeout = setTimeout(
+                                function()
+                                {
+                                    api.reinitialise();
+                                    throttleTimeout = null;
+                                },
+                                50
+                            );
+                        }
+                    } else {
+                        api.reinitialise();
+                    }
+                }
+            );
+        }
+    )
+
+});
