@@ -459,7 +459,6 @@ ul#resultTabs
 #scrollViewport
 {
     overflow: hidden;
-    height: 89px;
 }
 
 #scrollViewportHelp
@@ -519,6 +518,10 @@ ul#resultTabs
 @media only screen and (min-width: 768px) {
     /* Tablets/netbooks (768px+) styles go here */
 
+    #scrollViewport
+    {
+        height: 89px;
+    }
 
     div.results
     {
