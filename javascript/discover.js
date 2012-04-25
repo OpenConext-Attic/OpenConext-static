@@ -462,7 +462,7 @@ var Discover = function() {
 };
 
 $(function() {
-
+    if(window.innerWidth<768) return;
     $('#scrollViewport').each(
 
         function()
