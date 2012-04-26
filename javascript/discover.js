@@ -154,7 +154,7 @@ var Discover = function() {
         initLinks : function() {
             $("#help_nav a").live("click", function(e) {
                 e.preventDefault();
-                if ($('#help:visible').length > 0 && $('#help:visible').html().trim() !== "") {
+                if ($('#help:visible').length > 0 && jQuery.trim($('#help:visible').html()) !== "") {
                     return;
                 }
                 $.get('/authentication/idp/help?lang='+library.lang, function(data) {
@@ -182,9 +182,6 @@ var Discover = function() {
                 $('#faq li').not(this).removeClass('open');
 
                 //Reinitialise scrollbar
-                $('#scrollViewportHelp') || $('#scrollViewportHelp').data('jsp') || $('#scrollViewportHelp').data('jsp').reinitialise();
-            });
-            $(window).resize(function() {
                 $('#scrollViewportHelp') || $('#scrollViewportHelp').data('jsp') || $('#scrollViewportHelp').data('jsp').reinitialise();
             });
 
@@ -332,13 +329,10 @@ var Discover = function() {
             if (results.length == 0) {
                 $('#noResultsMessage').show();
                 $('#scrollViewport').hide();
-                $('#resultTabs').hide();
             } else {
-                if(window.innerWidth>=768)
-                {
+                if (window.innerWidth>=768) {
                     $('#noResultsMessage').hide();
                     $('#scrollViewport').show();
-                    $('#resultTabs').show();
                 }
 
                 //Clear results box
@@ -375,7 +369,6 @@ var Discover = function() {
                     // Use jquery template to create html
                     var html = $('#idpListTemplate').tmpl(idp);
                     $('#organisationsContainer').append(html);
-
                 }
 
                 // Check whether there is a search and a selection has to be made
@@ -412,9 +405,6 @@ var Discover = function() {
 
                 //Reinitialise scrollbar
                 $('#scrollViewport') || $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
-                $(window).resize(function(){
-                    $('#scrollViewport').data('jsp') || $('#scrollViewport').data('jsp').reinitialise();
-                });
             }
         },
 
@@ -463,10 +453,10 @@ var Discover = function() {
 
 $(function() {
     if(window.innerWidth<768) return;
-    $('#scrollViewport').each(
+
+    $('#scrollViewport,#scrollViewportHelp').each(
 
         function()
-
         {
             $(this).jScrollPane(
                 {
@@ -475,8 +465,7 @@ $(function() {
             );
             var api = $(this).data('jsp');
             var throttleTimeout;
-            $(window).bind(
-                'resize',
+            $(window).resize(
                 function()
                 {
                     if ($.browser.msie) {
@@ -500,5 +489,4 @@ $(function() {
             );
         }
     )
-
 });
