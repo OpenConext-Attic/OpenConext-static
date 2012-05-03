@@ -76,8 +76,6 @@ var Discover = function() {
         },
 
         show : function() {
-            this.enableScrolling();
-
             // Restrict the form from submitting unless a valid idp has been chosen
             $('#IdpListForm').submit(function() {
                 var selectedIdp = $('#Idp').attr('value');
@@ -98,6 +96,8 @@ var Discover = function() {
             //Get start organisations
             library.sortIdps();
             library.loadIdps($('#searchBox').val());
+
+            this.enableScrolling();
 
             //Hook up searchbox event
             $('#searchBox').keyup(function (e) {
