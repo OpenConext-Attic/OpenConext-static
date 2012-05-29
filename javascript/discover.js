@@ -150,6 +150,10 @@ var Discover = function() {
 
         linkHelp: function() {
             library.initLinks();
+        },
+
+        showHelp: function(speed) {
+            library.showHelp(speed);
         }
     };
 
@@ -171,20 +175,24 @@ var Discover = function() {
         },
 
         initLinks : function() {
-            $("#help_nav a").live("click", function(e) {
-                e.preventDefault();
-                if ($('#help:visible').length > 0 && $.trim($('#help:visible').html()) !== "") {
-                    return;
-                }
-                $.get('/authentication/idp/help?lang='+library.lang, function(data) {
-                    $("#content").hide('slow');
+            $("#help_nav a").live("click", function() {
+                library.showHelp();
+            });
+        },
 
-                    var help = $("#help");
-                    help.html(data);
-                    help.show('slow', function() { library.handleScrollBars(); });
+        showHelp: function(speed) {
+            speed = speed || 'fast';
+            if ($('#help:visible').length > 0 && $.trim($('#help:visible').html()) !== "") {
+                return;
+            }
+            $.get('/authentication/idp/help?lang='+library.lang, function(data) {
+                $("#content").hide(speed);
 
-                    library.prepareFaq();
-                });
+                var help = $("#help");
+                help.html(data);
+                help.show(speed, function() { library.handleScrollBars(); });
+
+                library.prepareFaq();
             });
         },
 
@@ -198,8 +206,7 @@ var Discover = function() {
             });
 
             $("#back_link").live("click", function(e) {
-                e.preventDefault();
-                $("#content").show('slow');
+                $("#content").show('slow', function() { library.handleScrollBars(); });
                 $("#help").hide('slow');
             });
         },
