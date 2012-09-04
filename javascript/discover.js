@@ -422,6 +422,7 @@ var Discover = function() {
                     return false;
                 });
             }
+            library.handleScrollBars();
         },
 
         // set selection of suggestion in list
