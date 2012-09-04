@@ -450,3 +450,14 @@ table.attribute-table {
 .left {
     float: left;
 }
+
+/* metadata and certificates page */
+dl.metadata-certificates-list dd,
+dl.metadata-certificates-list dt {
+    margin-bottom: 5px;
+}
+
+dl.metadata-certificates-list dd {
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
