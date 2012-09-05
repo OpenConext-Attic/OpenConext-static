@@ -29,13 +29,6 @@
     float: left;
 }
 
-.stop-icon {
-    background: url(../media/dead_end.png) no-repeat;
-    height: 48px;
-    width: 48px;
-    float: left;
-}
-
 .error-text {
     padding-left: 42px;
 }
