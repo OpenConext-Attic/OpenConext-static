@@ -236,7 +236,8 @@ var Discover = function() {
                     idp['Name'] = this.clipString(idp['Name'], 45); //Clip string to prevent overlap with 'No access' label
                 }
                 var html = $('#idpListSuggestionTemplate').tmpl(idp);
-                $('#IdpSuggestion').append(html).click(function() {
+                $('#IdpSuggestion').append(html).click(function(e) {
+                    e.preventDefault();
                     //action no access or access
                     if (idp['Access'] == 0) {
                         //TODO implemented action on no access
@@ -244,6 +245,8 @@ var Discover = function() {
                         $('#Idp').attr('value', idp['Alt']);
                         $('#IdpListForm').submit();
                     }
+
+                    return false;
                 });
 
             } else {
