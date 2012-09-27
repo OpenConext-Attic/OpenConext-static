@@ -100,16 +100,21 @@ var Discover = function() {
             this.enableScrolling();
 
             //Hook up searchbox event
-            $('#searchBox').keyup(function (e) {
-                switch (e.which) {
-                    case 40: // ignore the arrow keys
-                    case 38:
-                    case 37:
-                    case 39:
-                        break;
-                    default:
-                        library.loadIdps($('#searchBox').val());
-                }
+            $('#searchBox').
+                keyup(function (e) {
+                    switch (e.which) {
+                        case 40: // ignore the arrow keys
+                        case 38:
+                        case 37:
+                        case 39:
+                            break;
+                        default:
+                            library.loadIdps($('#searchBox').val());
+                    }
+                }).
+                // To support HTML5 search reset (see Chrome)
+                bind('search', function(e) {
+                    console.log(e); library.loadIdps($('#searchBox').val());
             });
 
             //Disable or enable keyboardNavigator if search field gets or looses focus
