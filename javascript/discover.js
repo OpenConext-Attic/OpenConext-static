@@ -114,7 +114,7 @@ var Discover = function() {
                 }).
                 // To support HTML5 search reset (see Chrome)
                 bind('search', function(e) {
-                    console.log(e); library.loadIdps($('#searchBox').val());
+                    library.loadIdps($('#searchBox').val());
             });
 
             //Disable or enable keyboardNavigator if search field gets or looses focus
