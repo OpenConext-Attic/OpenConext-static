@@ -18,7 +18,7 @@
  *
  * @category  SURFconext EngineBlock
  * @package
- * @copyright Copyright © 2010-2011 SURFnet SURFnet bv, The Netherlands (http://www.surfnet.nl)
+ * @copyright Copyright Â© 2010-2011 SURFnet SURFnet bv, The Netherlands (http://www.surfnet.nl)
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  */
 
@@ -115,7 +115,7 @@ var Discover = function() {
                 // To support HTML5 search reset (see Chrome)
                 bind('search', function(e) {
                     library.loadIdps($('#searchBox').val());
-            });
+                });
 
             //Disable or enable keyboardNavigator if search field gets or looses focus
             $('#searchBox').focus(function() {
@@ -221,10 +221,7 @@ var Discover = function() {
             if (idp) {
                 this.selectedId = idp['ID'];
 
-                idp['Name'] = idp['Name_nl'];
-                if ((this.lang == 'en') & (idp['Name_en'] != undefined)) {
-                    idp['Name'] = idp['Name_en'];
-                }
+                idp['Name'] = this.resolveIdPName(idp, this.lang);
                 idp['Alt'] = encodeURIComponent(idp['EntityId']);
 
                 idp['Suggestion'] = 'Onze Suggestie:';
@@ -238,7 +235,7 @@ var Discover = function() {
                         idp['noAccess'] = '<em>No access. &raquo;</em>';
                     }
                     idp['NoAccessClass'] = 'noAccess';
-                    idp['Name'] = this.clipString(idp['Name'], 45); //Clip string to prevent overlap with 'No access' label
+                    idp['Name'] = library.clipString(idp['Name'], 45); //Clip string to prevent overlap with 'No access' label
                 }
                 var html = $('#idpListSuggestionTemplate').tmpl(idp);
                 $('#IdpSuggestion').append(html).click(function(e) {
@@ -284,12 +281,20 @@ var Discover = function() {
             }
         },
 
+        resolveIdPName : function(iDp, language) {
+            var name = iDp['Name_' + language];
+            if (name == undefined || name === '') {
+                language = (language == 'en') ? 'nl' : 'en';
+                var name = iDp['Name_' + language];
+            }
+            return name;
+        },
+
         sortIdps : function() {
             this.idpList.sort(function(o1, o2){
-                var prop = 'Name_'+library.lang;
-                var v1 = o1.hasOwnProperty(prop) ? o1[prop] : o1['Name_nl'];
-                var v2 = o2.hasOwnProperty(prop) ? o2[prop] : o2['Name_nl'];
-                return v1.localeCompare(v2);
+                var name1 = library.resolveIdPName(o1, library.lang);
+                var name2 = library.resolveIdPName(o2, library.lang);
+                return name1.localeCompare(name2);
             });
         },
 
@@ -374,23 +379,18 @@ var Discover = function() {
 
                     idp['ID'] = result['ID'];
                     idp['Logo'] = result['Logo'];
-
-                    idp['Name'] = result['Name_nl'];
-                    if ((this.lang == 'en') & (result['Name_en'] != undefined)) {
-                        idp['Name'] = result['Name_en'];
-                    }
-
+                    idp['Name'] = library.resolveIdPName(result, this.lang);
                     idp['Alt'] = encodeURIComponent(result['EntityId']);
                     idp['NoAccess'] = '';
                     idp['NoAccessClass'] = '';
 
                     if (result['Access'] == 0) {
-                        idp['NoAccess'] = '<em>Geen toegang. &raquo;</em>';
+                        idp['NoAccess'] = 'Geen toegang. &raquo;';
                         if (this.lang == 'en') {
-                            idp['NoAccess'] = '<em>No access. &raquo;</em>';
+                            idp['NoAccess'] = 'No access. &raquo;';
                         }
                         idp['NoAccessClass'] = 'noAccess';
-                        idp['Name'] = clipString(idp['Name'], 45); //Clip string to prevent overlap with 'No access' label
+                        idp['Name'] = library.clipString(idp['Name'], 45); //Clip string to prevent overlap with 'No access' label
                     }
 
                     // Use jquery template to create html
