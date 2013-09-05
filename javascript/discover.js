@@ -185,6 +185,21 @@ var Discover = function() {
             });
         },
 
+        showRequestAccess: function(speed) {
+            speed = speed || 'fast';
+            if ($('#help:visible').length > 0 && $.trim($('#help:visible').html()) !== "") {
+                return;
+            }
+            $.get('/authentication/idp/requestAccess?lang='+library.lang, function(data) {
+                $("#content").hide(speed);
+
+                var requestAccess = $("#requestAccess");
+                requestAccess.html(data);
+                requestAccess.show(speed, function() { library.handleScrollBars(); });
+            });
+        },
+
+
         showHelp: function(speed) {
             speed = speed || 'fast';
             if ($('#help:visible').length > 0 && $.trim($('#help:visible').html()) !== "") {
@@ -242,7 +257,7 @@ var Discover = function() {
                     e.preventDefault();
                     //action no access or access
                     if (idp['Access'] == 0) {
-                        //TODO implemented action on no access
+                        library.showRequestAccess();
                     } else {
                         $('#Idp').attr('value', idp['Alt']);
                         $('#IdpListForm').submit();
@@ -421,7 +436,7 @@ var Discover = function() {
 
                     //action no access or access
                     if ($(this).hasClass('noAccess')) {
-                        //TODO implemented action on no access
+                        library.showRequestAccess();
                     } else {
                         $('#Idp').attr('value', org);
                         $('#IdpListForm').submit();
