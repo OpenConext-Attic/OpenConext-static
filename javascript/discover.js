@@ -328,7 +328,16 @@ var Discover = function() {
             this.idpList.sort(function(o1, o2){
                 var name1 = library.resolveIdPName(o1, library.lang);
                 var name2 = library.resolveIdPName(o2, library.lang);
-                return name1.localeCompare(name2);
+
+                var access1 = o1['Access'];
+                var access2 = o2['Access'];
+
+                if (access1 !== access2) {
+                    return access1 < access2;
+                } else {
+                    return name1.localeCompare(name2);
+                }
+
             });
         },
 
@@ -428,7 +437,13 @@ var Discover = function() {
                     }
 
                     // Use jquery template to create html
-                    var html = $('#idpListTemplate').tmpl(idp);
+                    if (matchMedia('only screen and (min-width: 768px)').matches) {
+                       var html = $('#idpListTemplate').tmpl(idp);
+                    }
+                    else {
+                       var html = $('#idpListTemplateMobile').tmpl(idp);
+                    }
+
                     $('#organisationsContainer').append(html);
                 }
 
