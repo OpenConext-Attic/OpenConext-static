@@ -333,7 +333,7 @@ var Discover = function() {
                 var access2 = o2['Access'];
 
                 if (access1 !== access2) {
-                    return access1 < access2;
+                    return access2 - access1;
                 } else {
                     return name1.localeCompare(name2);
                 }
