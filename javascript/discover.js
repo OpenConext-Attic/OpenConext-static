@@ -26,35 +26,6 @@ var Discover = function() {
 
     var module = {
 
-        enableScrolling: function() {
-            library.handleScrollBars();
-
-            var throttleTimeout;
-            $(window).bind(
-                'resize',
-                function()
-                {
-                    if ($.browser.msie) {
-                        // IE fires multiple resize events while you are dragging the browser window which
-                        // causes it to crash if you try to update the scrollpane on every one. So we need
-                        // to throttle it to fire a maximum of once every 50 milliseconds...
-                        if (!throttleTimeout) {
-                            throttleTimeout = setTimeout(
-                                function()
-                                {
-                                    library.handleScrollBars();
-                                    throttleTimeout = null;
-                                },
-                                50
-                            );
-                        }
-                    } else {
-                        library.handleScrollBars();
-                    }
-                }
-            );
-        },
-
         setLanguage : function(lang) {
             library.lang = lang;
         },
@@ -99,7 +70,7 @@ var Discover = function() {
             library.sortIdps();
             library.loadIdps($('#searchBox').val());
 
-            this.enableScrolling();
+            $('#searchBox').focus();
 
             //Hook up searchbox event
             $('#searchBox').
@@ -198,10 +169,10 @@ var Discover = function() {
                 var requestAccess = $("#requestAccess");
                 requestAccess.html(data);
                 requestAccess.show(speed, function() {
-                    library.handleScrollBars();
                     $('#cancel_request_access, #back_request_access').live("click",function(e){
-                        $("#content").show(speed, function() { library.handleScrollBars(); });
                         $("#requestAccess").hide(speed);
+                        $("#content").show(speed);
+
 
                     });
                     $('#request_access_submit').live("click",function(e){
@@ -228,7 +199,7 @@ var Discover = function() {
 
                 var help = $("#help");
                 help.html(data);
-                help.show(speed, function() { library.handleScrollBars(); });
+                help.show(speed);
 
                 library.prepareFaq();
             });
@@ -244,8 +215,9 @@ var Discover = function() {
             });
 
             $("#back_link").live("click", function(e) {
-                $("#content").show('fast', function() { library.handleScrollBars(); });
                 $("#help").hide('fast');
+                $("#content").show('fast');
+
             });
         },
 
@@ -353,10 +325,10 @@ var Discover = function() {
             library.displayIdps(library.filterIdps(filter));
 
             // Return focus on searchbox if it is a search
-            if (filter !== '') {
-                $('#searchBox').focus();
-                $('#searchBox').putCursorAtEnd();
-            }
+//            if (filter !== '') {
+//                $('#searchBox').focus();
+//                $('#searchBox').putCursorAtEnd();
+//            }
         },
 
         filterIdps : function(filter) {
@@ -480,7 +452,6 @@ var Discover = function() {
                     return false;
                 });
             }
-            library.handleScrollBars();
         },
 
         // set selection of suggestion in list
@@ -516,30 +487,8 @@ var Discover = function() {
             $('#organisationsContainer').addClass('list');
 
             keyboardNavigator.setMode(keyboardNavigator.MODE_LIST);
-        },
-
-        handleScrollBars: function() {
-            $('#scrollViewport').each(function() {
-                if (window.innerWidth >= 768) {
-                    $(this).jScrollPane(
-                        {
-                            showArrows: $(this).is('.arrow')
-                        }
-                    ).data('jsp').reinitialise();
-                }
-                else {
-                    $(this).jScrollPane().data('jsp').destroy();
-                }
-            });
-
-            $('#scrollViewportHelp').each(function() {
-                $(this).jScrollPane(
-                    {
-                        showArrows: $(this).is('.arrow')
-                    }
-                ).data('jsp').reinitialise();
-            });
         }
+
     };
 
     return module;

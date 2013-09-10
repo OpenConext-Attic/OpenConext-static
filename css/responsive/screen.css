@@ -370,9 +370,12 @@ input.search
 {
     font: 13px/13px Arial, Helvetica, sans-serif;
     height: 32px;
-    width: 99%;
+    width: 100%;
     margin-bottom: 0.8em;
     background: url(/media/search-small.png) no-repeat right center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 div.suggestion
@@ -499,15 +502,15 @@ div.right input{
 /*++++++++++++++++++++++++*/
 /*         SCROLL         */
 
-#scrollViewport
-{
-    overflow: hidden;
-}
+/*#scrollViewport*/
+/*{*/
+    /*overflow: hidden;*/
+/*}*/
 
-#scrollViewportHelp
-{
-    height: 235px;
-}
+/*#scrollViewportHelp*/
+/*{*/
+    /*height: 235px;*/
+/*}*/
 
 .jspVerticalBar
 {
@@ -553,24 +556,24 @@ div.right input{
 @media only screen and (min-width: 768px) {
     /* Tablets/netbooks (768px+) styles go here */
 
-    #scrollViewport
-    {
-        height: 255px;
-    }
+    /*#scrollViewport*/
+    /*{*/
+        /*height: 255px;*/
+    /*}*/
 
-    .consent #scrollViewport
-    {
-        height: 89px;
-    }
+    /*.consent #scrollViewport*/
+    /*{*/
+        /*height: 89px;*/
+    /*}*/
 
     div.results
     {
-        -webkit-box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
-        box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.2);
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        border-radius: 2px;
+        -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
         border: 1px solid #ccc;
         display: block;
         margin-bottom: 0pt;
@@ -580,8 +583,8 @@ div.right input{
     }
 
 
-    #scrollViewport { overflow: hidden; }
-    #scrollViewportHelp { height: 235px; }
+    /*#scrollViewport { overflow: hidden; }*/
+    /*#scrollViewportHelp { height: 235px; }*/
 
 
     ul#organisationsContainer
