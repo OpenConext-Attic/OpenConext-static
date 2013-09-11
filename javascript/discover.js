@@ -161,6 +161,7 @@ var Discover = function() {
         },
 
         showRequestAccess: function(idpEntityId, idpName, spEntityId, spName) {
+            keyboardNavigator.enabled = false;
             var speed = 'fast';
             var params = {lang:library.lang, idpEntityId:idpEntityId, idpName:idpName, spEntityId:spEntityId, spName:spName};
             $.get('/authentication/idp/requestAccess?'+ $.param(params), function(data) {
@@ -172,7 +173,7 @@ var Discover = function() {
                     $('#cancel_request_access, #back_request_access').live("click",function(e){
                         $("#requestAccess").hide(speed);
                         $("#content").show(speed);
-
+                        keyboardNavigator.enabled = true;
 
                     });
                     $('#request_access_submit').live("click",function(e){
@@ -181,6 +182,7 @@ var Discover = function() {
                         $.post('/authentication/idp/performRequestAccess', formData, function(data) {
                             $("#requestAccess").html(data);
                         });
+                        keyboardNavigator.enabled = true;
                         return false;
                     });
                 });
@@ -422,11 +424,11 @@ var Discover = function() {
                 // Check whether there is a search and a selection has to be made
                 if (($('#searchBox').val() == "") || ($('#searchBox').val() == this.searchText)) {
                     // no search no selection
-                    // keyboardNavigator.setSelectedIndex(-1);
+                     keyboardNavigator.setSelectedIndex(-1);
                     $('#organisationsContainer li').removeClass('selected');
                 } else {
                     // search, select first in list
-                    // keyboardNavigator.setSelectedIndex(0);
+                     keyboardNavigator.setSelectedIndex(0);
                     $('#organisationsContainer li:first').addClass('selected', '');
                 }
 
@@ -456,7 +458,7 @@ var Discover = function() {
 
         // set selection of suggestion in list
         selectSuggestion : function() {
-            id = $('#organisationsContainer li#c' + this.selectedId).index();
+            var id = $('#organisationsContainer li#c' + this.selectedId).index();
             keyboardNavigator.setSelectedIndex(id);
             $('#organisationsContainer li#c' + this.selectedId).addClass('selected', '');
         },
