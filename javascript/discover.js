@@ -458,7 +458,7 @@ var Discover = function() {
 
         // set selection of suggestion in list
         selectSuggestion : function() {
-            var id = $('#organisationsContainer li#c' + this.selectedId).index();
+            id = $('#organisationsContainer li#c' + this.selectedId).index();
             keyboardNavigator.setSelectedIndex(id);
             $('#organisationsContainer li#c' + this.selectedId).addClass('selected', '');
         },
